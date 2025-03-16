@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{
+        /* display: flex; */
+        /* justify-content: center; */
+        
+        position: fixed;
+        background-color:black;
+ margin-top: 200px;
+ margin-left: 800px;
+    }
+    h1{
+        background-color: black;
+        color:antiquewhite;
+        /* position: relative; */
+        border: 3px solid white;
+       
+    }
+    .api_body{
+        position: relative;
+        color: rgb(89, 204, 127);
+        margin-top: 100px;
+       
+        font-size: 20px;
+    }
+    #fetchjoke{
+        margin-top: 50px;
+        position:fixed;
+        size: 200px;
+        
+    }
+    .red{
+        /* margin-top: 100px ; */
+        /* display: flex;
+        justify-content:center ; */
+        position: fixed;
+    }
+    </style>
+</head>
+<body>
+    <div class="red">
+        <h1>Welcome to dad jokes</h1>
+    </div>
+    <div class="container">
+       
+        <section class="api_body"></section>
+        <button id="fetchjoke"> Get Another Joke</button>
+       
+    </div>
+    <script>
+        
+        const apiBody = document.querySelector(".api_body");
+        const apiUrl = "https://icanhazdadjoke.com/";
+      
+        const fetchdata = ()=>{
+        fetch(apiUrl, { 
+            headers: {
+                Accept: "application/json", 
+             },
+             })
+            .then((res) => {
+                 console.log(res);
+                 return res.json();
+            })
+            .then((data)=>{
+                console.log(data.joke);
+                apiBody.innerHTML=data.joke;
+            })
+            .catch((error) =>{
+                console.log(error)
+            });
+
+        };
+        fetchdata();
+
+
+        document.getElementById("fetchjoke").addEventListener("click", fetchdata);
+</script>
+
+</body>
+</html>
